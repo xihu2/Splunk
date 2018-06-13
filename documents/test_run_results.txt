@@ -1,0 +1,190 @@
+Ians-MBP:splunk xinxinhu$ ./movieAPITest_script.sh 
+============================= test session starts ==============================
+platform darwin -- Python 2.7.10, pytest-3.6.0, py-1.5.3, pluggy-0.6.0 -- /usr/bin/python
+cachedir: .pytest_cache
+rootdir: /Users/xinxinhu/Documents/splunk, inifile:
+plugins: expect-1.1.0
+collected 8 items                                                              
+
+testGet.py::testGetMoviewithq PASSED                                     [ 12%]
+testGet.py::testvalidateGetMovie FAILED                                  [ 25%]
+testGet.py::testGetMoviewithoutq PASSED                                  [ 37%]
+testGet.py::testGetMovieWithCount[0-16] PASSED                           [ 50%]
+testGet.py::testGetMovieWithCount[2-2] FAILED                            [ 62%]
+testGet.py::testGetMovieWithCount[26-16] PASSED                          [ 75%]
+testGet.py::testgetMoviewithoutHeader PASSED                             [ 87%]
+testGet.py::testgetMoviewithdirector PASSED                              [100%]
+
+=================================== FAILURES ===================================
+_____________________________ testvalidateGetMovie _____________________________
+
+    def testvalidateGetMovie():
+>   	assert validateGetMovie(movieName)
+E    AssertionError: assert False
+E     +  where False = validateGetMovie('batman')
+
+testGet.py:104: AssertionError
+__________________________ testGetMovieWithCount[2-2] __________________________
+
+count = 2, expected = 2
+
+    @pytest.mark.parametrize('count, expected', [(0, total_movie), (2, 2), (total_movie+10, total_movie)])
+    def testGetMovieWithCount(count, expected):
+>   	assert getMoviewithcount(movieName, count) == expected
+E    AssertionError: assert 16 == 2
+E     +  where 16 = getMoviewithcount('batman', 2)
+
+testGet.py:113: AssertionError
+====================== 2 failed, 6 passed in 3.29 seconds ======================
+============================= test session starts ==============================
+platform darwin -- Python 2.7.10, pytest-3.6.0, py-1.5.3, pluggy-0.6.0 -- /usr/bin/python
+cachedir: .pytest_cache
+rootdir: /Users/xinxinhu/Documents/splunk, inifile:
+plugins: expect-1.1.0
+collected 10 items                                                             
+
+testPost.py::testPostMovie[Super Batman-Best Movie-200] PASSED           [ 10%]
+testPost.py::testPostMovie[-Love it-404] FAILED                          [ 20%]
+testPost.py::testPostMovie[True Batman--404] FAILED                      [ 30%]
+testPost.py::testPostMovie[--404] FAILED                                 [ 40%]
+testPost.py::testvalidatePostMovie FAILED                                [ 50%]
+testPost.py::testpostMoviewithoutDesc FAILED                             [ 60%]
+testPost.py::testpostMoviewithoutName FAILED                             [ 70%]
+testPost.py::testpostMoviewithoutHeader PASSED                           [ 80%]
+testPost.py::testpostMoviewithoutPayload FAILED                          [ 90%]
+testPost.py::testpostMoviewithTitleName FAILED                           [100%]
+
+=================================== FAILURES ===================================
+_________________________ testPostMovie[-Love it-404] __________________________
+
+name = '', desc = 'Love it', expected = 404
+
+    @pytest.mark.parametrize('name, desc, expected', [('Super Batman', 'Best Movie', 200), ('', 'Love it', 404), ('True Batman', '', 404), ('', '', 404)])
+    def testPostMovie(name, desc, expected):
+>   	assert postMovie(name, desc) == expected
+E    AssertionError: assert 200 == 404
+E     +  where 200 = postMovie('', 'Love it')
+
+testPost.py:110: AssertionError
+_______________________ testPostMovie[True Batman--404] ________________________
+
+name = 'True Batman', desc = '', expected = 404
+
+    @pytest.mark.parametrize('name, desc, expected', [('Super Batman', 'Best Movie', 200), ('', 'Love it', 404), ('True Batman', '', 404), ('', '', 404)])
+    def testPostMovie(name, desc, expected):
+>   	assert postMovie(name, desc) == expected
+E    AssertionError: assert 200 == 404
+E     +  where 200 = postMovie('True Batman', '')
+
+testPost.py:110: AssertionError
+_____________________________ testPostMovie[--404] _____________________________
+
+name = '', desc = '', expected = 404
+
+    @pytest.mark.parametrize('name, desc, expected', [('Super Batman', 'Best Movie', 200), ('', 'Love it', 404), ('True Batman', '', 404), ('', '', 404)])
+    def testPostMovie(name, desc, expected):
+>   	assert postMovie(name, desc) == expected
+E    AssertionError: assert 200 == 404
+E     +  where 200 = postMovie('', '')
+
+testPost.py:110: AssertionError
+____________________________ testvalidatePostMovie _____________________________
+
+    def testvalidatePostMovie():
+>   	assert validatePostMovie('Superbatman', 'Best movie') == True
+E    AssertionError: assert False == True
+E     +  where False = validatePostMovie('Superbatman', 'Best movie')
+
+testPost.py:114: AssertionError
+___________________________ testpostMoviewithoutDesc ___________________________
+
+    def testpostMoviewithoutDesc():
+>   	assert postMoviewithoutDesc('SuperBatman') == 404
+E    AssertionError: assert 200 == 404
+E     +  where 200 = postMoviewithoutDesc('SuperBatman')
+
+testPost.py:119: AssertionError
+___________________________ testpostMoviewithoutName ___________________________
+
+    def testpostMoviewithoutName():
+>   	assert postMoviewithoutName('Love it!') == 404
+E    AssertionError: assert 200 == 404
+E     +  where 200 = postMoviewithoutName('Love it!')
+
+testPost.py:123: AssertionError
+_________________________ testpostMoviewithoutPayload __________________________
+
+    def testpostMoviewithoutPayload():
+>   	assert postMoviewithoutPayload() == 404
+E    assert 200 == 404
+E     +  where 200 = postMoviewithoutPayload()
+
+testPost.py:132: AssertionError
+__________________________ testpostMoviewithTitleName __________________________
+
+    def testpostMoviewithTitleName():
+>   	assert postMoviewithTitleName('CoCo', 'Super!') == 404
+E    AssertionError: assert 200 == 404
+E     +  where 200 = postMoviewithTitleName('CoCo', 'Super!')
+
+testPost.py:136: AssertionError
+====================== 8 failed, 2 passed in 4.20 seconds ======================
+============================= test session starts ==============================
+platform darwin -- Python 2.7.10, pytest-3.6.0, py-1.5.3, pluggy-0.6.0 -- /usr/bin/python
+cachedir: .pytest_cache
+rootdir: /Users/xinxinhu/Documents/splunk, inifile:
+plugins: expect-1.1.0
+collected 8 items                                                              
+
+testSPL.py::testcheckPosterPathDup FAILED                                [ 12%]
+testSPL.py::testcheckPosterPathValid FAILED                              [ 25%]
+testSPL.py::testcheckSortingRule1 FAILED                                 [ 37%]
+testSPL.py::testcheckSortingRule2_part1 FAILED                           [ 50%]
+testSPL.py::testcheckSortingRule2_part2 FAILED                           [ 62%]
+testSPL.py::testcheckmovieGenreIDSum PASSED                              [ 75%]
+testSPL.py::testcheckMovieNamePalindrome PASSED                          [ 87%]
+testSPL.py::testcheckMovieTitle PASSED                                   [100%]
+
+=================================== FAILURES ===================================
+____________________________ testcheckPosterPathDup ____________________________
+
+    def testcheckPosterPathDup():
+>   	assert checkPosterPathDup(MovieName, 0) == True
+E    AssertionError: assert False == True
+E     +  where False = checkPosterPathDup('batman', 0)
+
+testSPL.py:265: AssertionError
+___________________________ testcheckPosterPathValid ___________________________
+
+    def testcheckPosterPathValid():
+>   	assert checkPosterPathValid(MovieName, 0) == True
+E    AssertionError: assert False == True
+E     +  where False = checkPosterPathValid('batman', 0)
+
+testSPL.py:270: AssertionError
+____________________________ testcheckSortingRule1 _____________________________
+
+    def testcheckSortingRule1():
+>   	assert checkSortingRule1(MovieName, 0) == True
+E    AssertionError: assert False == True
+E     +  where False = checkSortingRule1('batman', 0)
+
+testSPL.py:274: AssertionError
+_________________________ testcheckSortingRule2_part1 __________________________
+
+    def testcheckSortingRule2_part1():
+>   	assert checkSortingRule2_part1(MovieName, 0) == True
+E    AssertionError: assert 'Please fix SPL-003 Rule #1' == True
+E     +  where 'Please fix SPL-003 Rule #1' = checkSortingRule2_part1('batman', 0)
+
+testSPL.py:278: AssertionError
+_________________________ testcheckSortingRule2_part2 __________________________
+
+    def testcheckSortingRule2_part2():
+>   	assert checkSortingRule2_part2(MovieName, 0) == True
+E    AssertionError: assert 'Please fix SPL-003 Rule #1' == True
+E     +  where 'Please fix SPL-003 Rule #1' = checkSortingRule2_part2('batman', 0)
+
+testSPL.py:282: AssertionError
+===================== 5 failed, 3 passed in 22.97 seconds ======================
+Ians-MBP:splunk xinxinhu$ 
