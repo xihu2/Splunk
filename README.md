@@ -3,14 +3,12 @@
 
 * need python 2.7 (run $ python --version)
 * need requests, pytest packages
-
 * to check if pytest, requests are installed
 	* $ pip list 
-
-
 * to install pytest, requests packages
 	* $ pip install pytest
 	* $ pip install requests
+
 
 
 
@@ -29,6 +27,7 @@
 
 	
 
+
 ##Test case run steps:
 * run python test by category under Splunk/python
 	* $ pytest testGet.py -v
@@ -38,8 +37,7 @@
 * run shell script to run all the test cases under Splunk/python
  	* $ ./movieAPITest_script.sh
  
-* setup daily test shell script run at 22:00pm in crontab under Splunk/python
-*  stdout will be saved in run_results.log
+* setup daily test shell script run at 22:00pm in crontab under Splunk/python and stdout will be saved in run_results.log
 	* $ crontab -e to edit crontab 
  	* add following line: 00 22 * * * movieAPITest_script.sh > run_results.log
  	*  save the file
