@@ -42,4 +42,4 @@
  	* add following line: 00 22 * * * movieAPITest_script.sh > run_results.log
  	*  save the file
 	
-* or setup daily test shell script run in Fusion or any related script run tools
+* or setup daily test shell script CI run in Fusion or any related tools when there are any code chages checkin
