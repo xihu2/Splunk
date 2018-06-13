@@ -1,5 +1,5 @@
 # Splunk Movie API project
-##Environment setup:
+##**Environment setup:**
 
 * need python 2.7 (run $ python --version)
 * need requests, pytest packages
@@ -12,7 +12,7 @@
 
 
 
-##Test structures:
+##**Test structures:**
 * all test cases and scripts are located under Splunk/python directory
 	* testGet.py is testing all the functionalities for Get API
 	* testPost.py is testing all the functionalities for Post API
@@ -28,7 +28,7 @@
 	
 
 
-##Test case run steps:
+##**Test case run steps:**
 * run python test by category under Splunk/python
 	* $ pytest testGet.py -v
  	* $ pytest testPost.py -v
